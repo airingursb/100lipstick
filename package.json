@@ -4,6 +4,7 @@
   "description": "一款 H5 放置类小游戏，完成后将移植到微信小游戏上。",
   "main": "game.js",
   "scripts": {
+    "start": "live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "devDependencies": {
     "eslint": "^5.12.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.1.1"
+    "eslint-loader": "^2.1.1",
+    "live-server": "^1.2.1"
   }
 }
