@@ -20,6 +20,10 @@ export class Sprite {
     this.y = y;
     this.width = width;
     this.height = height;
+    this.top = y;
+    this.bottom = y + height;
+    this.left = x;
+    this.right = x + width;
   }
 
   static getImage(key) {
@@ -37,15 +41,16 @@ export class Sprite {
    * width 要使用的宽度
    * height 要使用的高度
    */
-  draw(img = this.img,
-    srcX = this.srcX,
-    srcY = this.srcY,
-    srcW = this.srcW,
-    srcH = this.srcH,
+  draw(
     x = this.x,
     y = this.y,
     width = this.width,
-    height = this.height) {
+    height = this.height,
+    img = this.img,
+    srcX = this.srcX,
+    srcY = this.srcY,
+    srcW = this.srcW,
+    srcH = this.srcH) {
     this.ctx.drawImage(
       img,
       srcX,
@@ -57,5 +62,13 @@ export class Sprite {
       width,
       height
     );
+  }
+
+  handleTap(touches) {
+    const { x, y, action } = touches;
+    if (x >= this.left && x <= this.right
+      && y >= this.top && y <= this.bottom) {
+      action();
+    }
   }
 }
