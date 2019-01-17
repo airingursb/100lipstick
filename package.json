@@ -1,0 +1,24 @@
+{
+  "name": "100lipstick",
+  "version": "1.0.0",
+  "description": "一款 H5 放置类小游戏，完成后将移植到微信小游戏上。",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airingursb/100lipstick.git"
+  },
+  "author": "Airing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airingursb/100lipstick/issues"
+  },
+  "homepage": "https://github.com/airingursb/100lipstick#readme",
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.1"
+  }
+}
