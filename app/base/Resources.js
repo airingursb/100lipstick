@@ -11,6 +11,7 @@ export const Resources = [
   ['heart', 'res/image/shop/icon_heart.png'],
   ['price', 'res/image/shop/icon_price.png'],
   ['goods', 'res/image/shop/lipstick_list.png'],
-  ['lipstick', 'res/image/shop/lipstick_show.png'],
+  ['box', 'res/image/shop/lipstick_show.png'],
   ['shopBackground', 'res/image/shop/shop_bg.png'],
+  ['lipstick', 'res/image/lipstick.png'],
 ];
