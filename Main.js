@@ -27,6 +27,8 @@ export class Main {
     this.dataStore.res = map;
     this.director.isGameOver = true;
     this.dataStore.showShop = false;
+    this.dataStore.coinPerSec = 0;
+    this.dataStore.coins = 0;
     this.dataStore
       .put('background', BackGround)
       .put('username', UserName)
@@ -61,6 +63,7 @@ export class Main {
       }
     }
     this.registerEvent();
+    this.director.run();
   }
 
   init() {

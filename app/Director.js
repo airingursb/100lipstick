@@ -36,18 +36,32 @@ export class Director {
         this.dataStore.get('coin').draw();
         this.dataStore.get('shopBtn').draw();
         this.dataStore.get('recycleBtn').draw();
+        const stage = this.dataStore.get('stage');
+        const canvas = this.dataStore.canvas;
+        const stageX = [
+          canvas.width / 4 - stage.width / 2,
+          canvas.width / 2 - stage.width / 2,
+          canvas.width / 2 + stage.width,
+        ];
+        const stageY = [
+          canvas.height / 4 + canvas.height / 30,
+          canvas.height / 4 + canvas.height / 30 * 2 + stage.height,
+          canvas.height / 4 + canvas.height / 30 * 3 + stage.height * 2,
+          canvas.height / 4 + canvas.height / 30 * 4 + stage.height * 3,
+        ];
+        for (let i = 0; i <= 2; i++) {
+          for (let j = 0; j <= 3; j++) {
+            this.dataStore.get('stage').draw(stageX[i], stageY[j]);
+          }
+        }
       }
     });
   }
 
   run() {
-    if (!this.isGameOver) {
-      this.dataStore.get('background').draw();
-      let timer = requestAnimationFrame(() => this.run());
-      this.dataStore.put('timer', timer);
-    } else {
-      cancelAnimationFrame(this.dataStore.get('timer'));
-      this.dataStore.destroy();
-    }
+    setInterval(() => {
+      this.dataStore.coins += this.dataStore.coinPerSec;
+      console.log(this.dataStore.coins);
+    }, 1000);
   }
 }

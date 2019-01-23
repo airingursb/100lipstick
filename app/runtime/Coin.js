@@ -9,5 +9,15 @@ export class Coin extends Sprite {
       image.width, image.height,
       22, 42 + 40,
       image.width / 2, image.height / 2);
+    this.dataStore = DataStore.getInstance();
+  }
+
+  draw() {
+    super.draw();
+    
+    const ctx = this.dataStore.ctx;
+    ctx.font = '20px Arial';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(this.dataStore.coins, this.left + 30, this.top + 26);
   }
 }
