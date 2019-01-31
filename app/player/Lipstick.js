@@ -1,5 +1,4 @@
 import { Sprite } from '../base/Sprite.js';
-import { DataStore } from '../base/DataStore.js';
 
 export class Lipstick extends Sprite {
 

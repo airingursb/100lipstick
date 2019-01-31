@@ -1,6 +1,6 @@
 import { Sprite } from '../base/Sprite.js';
 import { DataStore } from '../base/DataStore.js';
-
+import { unit } from '../base/Unit.js';
 export class Coin extends Sprite {
   constructor() {
     const image = Sprite.getImage('userCoins');
@@ -18,6 +18,6 @@ export class Coin extends Sprite {
     const ctx = this.dataStore.ctx;
     ctx.font = '20px Arial';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(this.dataStore.coins, this.left + 30, this.top + 26);
+    ctx.fillText(this.dataStore.coins + unit[this.dataStore.unit], this.left + 30, this.top + 26);
   }
 }
