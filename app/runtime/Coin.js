@@ -13,11 +13,17 @@ export class Coin extends Sprite {
   }
 
   draw() {
-    super.draw();
-    
     const ctx = this.dataStore.ctx;
-    ctx.font = '20px Arial';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(this.dataStore.coins + unit[this.dataStore.unit], this.left + 30, this.top + 26);
+
+    setInterval(
+      () => {
+        super.draw();
+
+        ctx.font = '20px Arial';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(this.dataStore.coins + unit[this.dataStore.unit], this.left + 30, this.top + 26);
+      }, 1000
+    );
+
   }
 }

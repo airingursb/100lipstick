@@ -19,11 +19,26 @@ export class Director {
       ...touches,
       action: () => {
         this.dataStore.get('shop').draw();
+        this.dataStore.get('lipstick').draw();
         this.dataStore.showShop = true;
       }
     });
   }
 
+  // TODO: 购买逻辑 DEMO
+  handleLipstick(touches) {
+    const lipstick = this.dataStore.get('lipstick');
+    lipstick.handleTap({
+      ...touches,
+      action: () => {
+        console.log('buy');
+        this.dataStore.coins = this.dataStore.coins - this.dataStore.lipsticks[0].price;
+        this.dataStore.coinPerSec = this.dataStore.coinPerSec + this.dataStore.lipsticks[0].produce;
+        this.dataStore.box[0] = this.dataStore.lipsticks[0];
+      }
+    });
+  }
+  
   // 点击退出商城按钮
   handleExitBtn(touches) {
     const exitBtn = this.dataStore.get('exitBtn');

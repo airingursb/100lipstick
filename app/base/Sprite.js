@@ -66,6 +66,7 @@ export class Sprite {
 
   handleTap(touches) {
     const { x, y, action } = touches;
+    console.log(touches)
     if (x >= this.left && x <= this.right
       && y >= this.top && y <= this.bottom) {
       action();
