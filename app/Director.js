@@ -32,9 +32,10 @@ export class Director {
       ...touches,
       action: () => {
         console.log('buy');
-        this.dataStore.coins = this.dataStore.coins - this.dataStore.lipsticks[0].price;
+        localStorage.coins = Number(localStorage.coins) - this.dataStore.lipsticks[0].price;
         this.dataStore.coinPerSec = this.dataStore.coinPerSec + this.dataStore.lipsticks[0].produce;
         this.dataStore.box[0] = this.dataStore.lipsticks[0];
+        localStorage.coinPerSec = Number(localStorage.coinPerSec) + this.dataStore.lipsticks[0].produce;
       }
     });
   }
@@ -75,8 +76,7 @@ export class Director {
 
   run() {
     setInterval(() => {
-      this.dataStore.coins += this.dataStore.coinPerSec;
-      console.log(this.dataStore.coins);
+      localStorage.coins = Number(localStorage.coins) + Number(localStorage.coinPerSec);
     }, 1000);
   }
 }

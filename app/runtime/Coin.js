@@ -21,7 +21,7 @@ export class Coin extends Sprite {
 
         ctx.font = '20px Arial';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(this.dataStore.coins + unit[this.dataStore.unit], this.left + 30, this.top + 26);
+        ctx.fillText(localStorage.coins + unit[this.dataStore.unit], this.left + 30, this.top + 26);
       }, 1000
     );
 
