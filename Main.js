@@ -29,12 +29,13 @@ export class Main {
     this.dataStore.lipsticks = lipsticks;
     this.director.isGameOver = true;
     this.dataStore.showShop = false;
-    if (!localStorage.getItem('coins') && !localStorage.getItem('coinPerSec')) {
+    if (!localStorage.getItem('coins') || !localStorage.getItem('coinPerSec')
+      || !localStorage.getItem('unit') || !localStorage.getItem('unitPerSec')) {
       localStorage.coins = 0; // 目前拥有的金钱
       localStorage.coinPerSec = 0; // 目前单位时间生产金钱的量
+      localStorage.unit = 0; // 目前拥有金钱的单位
+      localStorage.unitPerSec = 0; // 目前生产金钱的单位
     };
-    this.dataStore.unit = 0; // 目前拥有金钱的单位
-    this.dataStore.unitPerSec = 0; // 目前生产金钱的单位
     this.dataStore.box = new Array(12).fill('');
     this.dataStore
       .put('background', BackGround)

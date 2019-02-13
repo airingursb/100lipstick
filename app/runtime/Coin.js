@@ -14,14 +14,14 @@ export class Coin extends Sprite {
 
   draw() {
     const ctx = this.dataStore.ctx;
-
+    
     setInterval(
       () => {
         super.draw();
 
         ctx.font = '20px Arial';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(localStorage.coins + unit[this.dataStore.unit], this.left + 30, this.top + 26);
+        ctx.fillText((+(localStorage.coins)).toFixed(2) + unit[+localStorage.unit], this.left + 30, this.top + 26);
       }, 1000
     );
 
