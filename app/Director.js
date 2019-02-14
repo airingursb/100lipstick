@@ -32,8 +32,8 @@ export class Director {
       ...touches,
       action: () => {
         console.log('buy');
-        localStorage.coins = Number(localStorage.coins) - this.dataStore.lipsticks[0].price;
-        localStorage.coinPerSec = Number(localStorage.coinPerSec) + this.dataStore.lipsticks[0].produce;
+        localStorage.coins = Number(localStorage.coins) - this.dataStore.lipsticks[0].price * Math.pow(1000, this.dataStore.lipsticks[0].priceUnit - localStorage.unit);
+        localStorage.coinPerSec = Number(localStorage.coinPerSec) + this.dataStore.lipsticks[0].produce * Math.pow(1000, this.dataStore.lipsticks[0].produceUnit - localStorage.unitPerSec);
         this.dataStore.box[0] = this.dataStore.lipsticks[0];
       }
     });
