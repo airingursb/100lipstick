@@ -1,6 +1,9 @@
 import { Sprite } from '../base/Sprite.js';
-import { DataStore } from '../base/DataStore.js';
 import { unit } from '../base/Unit.js';
+
+import { DataStore } from '../base/DataStore.js';
+import { Storage } from '../base/Stroage.js';
+
 export class Coin extends Sprite {
   constructor() {
     const image = Sprite.getImage('userCoins');
@@ -16,12 +19,13 @@ export class Coin extends Sprite {
     const ctx = this.dataStore.ctx;
     
     setInterval(
-      () => {
+      async () => {
         super.draw();
-
+        let coins = await Storage.get('coins', 0);
+        let u = await Storage.get('unit', 0);
         ctx.font = '20px Arial';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText((+(localStorage.coins)).toFixed(2) + unit[+localStorage.unit], this.left + 30, this.top + 26);
+        ctx.fillText((coins).toFixed(2) + unit[u], this.left + 30, this.top + 26);
       }, 1000
     );
 

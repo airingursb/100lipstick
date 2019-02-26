@@ -1,4 +1,5 @@
 import { DataStore } from './base/DataStore.js';
+import { Storage } from './base/Stroage.js';
 
 export class Director {
   static getInstance() {
@@ -30,10 +31,16 @@ export class Director {
     const lipstick = this.dataStore.get('lipstick');
     lipstick.handleTap({
       ...touches,
-      action: () => {
+      action: async () => {
         console.log('buy');
-        localStorage.coins = Number(localStorage.coins) - this.dataStore.lipsticks[0].price * Math.pow(1000, this.dataStore.lipsticks[0].priceUnit - localStorage.unit);
-        localStorage.coinPerSec = Number(localStorage.coinPerSec) + this.dataStore.lipsticks[0].produce * Math.pow(1000, this.dataStore.lipsticks[0].produceUnit - localStorage.unitPerSec);
+        let coins = await Storage.get('coins', 0);
+        let unit = await Storage.get('unit', 0);
+        let coinPerSec = await Storage.get('coinPerSec', 0);
+        let unitPerSec = await Storage.get('unitPerSec', 0);
+        coins = Number(coins - this.dataStore.lipsticks[0].price * Math.pow(1000, this.dataStore.lipsticks[0].priceUnit - unit));
+        await Storage.set('coins', coins);
+        coinPerSec = Number(coinPerSec + this.dataStore.lipsticks[0].produce * Math.pow(1000, this.dataStore.lipsticks[0].produceUnit - unitPerSec));
+        Storage.set('coinPerSec', coinPerSec);
         this.dataStore.box[0] = this.dataStore.lipsticks[0];
       }
     });
@@ -74,13 +81,18 @@ export class Director {
   }
 
   run() {
-    setInterval(() => {
-      
-      let power = localStorage.unitPerSec - localStorage.unit;
-      localStorage.coins = Number(localStorage.coins) + Number(localStorage.coinPerSec) * Math.pow(1000, power);
-      if (localStorage.coins > 999) {
-        localStorage.unit = Number(localStorage.unit) + 1;
-        localStorage.coins = localStorage.coins / 1000;
+    setTimeout(()=>{}, 1000);
+    setInterval(async () => {
+      let unitPerSec = await Storage.get('unitPerSec', 0);
+      let unit = await Storage.get('unit', 0);
+      let coinPerSec = await Storage.get('coinPerSec', 0);
+      let power = unitPerSec - unit;
+      let coins = await Storage.get('coins', 0);
+      coins = coins + coinPerSec * Math.pow(1000, power);
+      Storage.set('coins', coins);
+      if (await Storage.get('coins', 0) > 999) {
+        await Storage.set('unit', unit + 1);
+        await Storage.set('coins', coins / 1000);
       }
     }, 1000);
   }
